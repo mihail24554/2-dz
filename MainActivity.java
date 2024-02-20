@@ -61,7 +61,10 @@ public class MainActivity extends AppCompatActivity {
             Stream<Book> bookStream = Arrays.stream(books);
 
             // фильт не нулевых ячеек массива и вывод книг на экран
-            bookStream.filter( s -> s != null ).forEach(s -> output.append(s.getId() + " Автор " + s.getAuthor() + ", книга " + s.getName() + "\n"));
+            bookStream
+                    .filter( s -> s != null )
+                    .sorted(Comparator.comparing(elem -> elem.getAuthor()))
+                    .forEach(s -> output.append(s.getId() + " Автор " + s.getAuthor() + ", книга " + s.getName() + "\n"));
 
         }
     };
